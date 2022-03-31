@@ -7,10 +7,11 @@ public class Main {
         resData data = new resData();
         queryData query = new queryData();
 
-        //query.parseFile("test/Queries.csv");
+        query.parseFile("test/Queries.csv");
 
+        System.out.println();
         data.parseFile(args[0]);
         //whatABurger.parseFile("test/WhataburgerData.csv");
-        System.out.println(data);
+        //System.out.println(data);
     }
 }

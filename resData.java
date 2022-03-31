@@ -49,8 +49,8 @@ public class resData {
     public String toString(){
         String printRes = "";
         int num = 1;
-        for(resObj whataData : resList){
-            printRes = printRes.concat("Store Number: " + num + " " + whataData.toString()) + "\n";
+        for(resObj csvData : resList){
+            printRes = printRes.concat("Store Number: " + num + " " + csvData.toString()) + "\n";
             num++;
         }
         return printRes;
