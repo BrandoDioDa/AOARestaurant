@@ -5,21 +5,10 @@ import java.util.Scanner;
 
 public class resData {
     //Variables
-    private int storeID;
-    private String address;
-    private String city;
-    private String state;
-    private int zipCode;
-    private double latitude;
-    private double longitude;
     ArrayList<resObj> resList = new ArrayList<resObj>();
 
     public resData() {
 
-    }
-
-    public int getStoreID() {
-        return storeID;
     }
 
     public void parseFile(String fileName){
