@@ -12,7 +12,7 @@ public class resData {
     private int zipCode;
     private double latitude;
     private double longitude;
-    ArrayList<resData> resList = new ArrayList<resData>();
+    ArrayList<resObj> resList = new ArrayList<resObj>();
 
     public resData() {
 
@@ -23,20 +23,22 @@ public class resData {
     }
 
     public void parseFile(String fileName){
+        //Initialize File
         File file = new File(fileName);
-
+        //Try catch for going through file lines
         try{
             Scanner scan = new Scanner(file);
             String fileLine;
-
+            //Testing for skipping first line that is all Strings
+            scan.nextLine();
             while(scan.hasNextLine()){
-                resData resLocation = new resData();
+                resObj resLocation = new resObj();
 
+                //Line that is read is split up by it's regex into array.
                 fileLine = scan.nextLine();
                 String[] splitter = fileLine.split(",");
 
-
-
+                //set the corresponding value from the csv to the correct variable
                 resLocation.setStoreID(Integer.parseInt(splitter[0]));
                 resLocation.setAddress(splitter[1]);
                 resLocation.setCity(splitter[2]);
@@ -44,9 +46,10 @@ public class resData {
                 resLocation.setZipCode(Integer.parseInt(splitter[4]));
                 resLocation.setLatitude(Double.parseDouble(splitter[5]));
                 resLocation.setLongitude(Double.parseDouble(splitter[6]));
-
+                //add new object to the arraylist
                 resList.add(resLocation);
             }
+            scan.close(); //close the scanner
         } catch (FileNotFoundException e){
             e.printStackTrace();
         }
@@ -54,69 +57,19 @@ public class resData {
 
     public String toString(){
         String printRes = "";
-        printRes = printRes.concat("StoreID: " + this.getStoreID() + " | " + "Address: " + this.getAddress() + " | "
-         + "City: " + this.getCity() + " | " + "State: " + this.getState() + " | " + "Zip Code: " + this.getZipCode()
-         + " | " + "Latitude: " + this.getLatitude() + " | " + "Longitude: " + this.getLongitude() + "\n");
+        int num = 1;
+        for(resObj whataData : resList){
+            printRes = printRes.concat("Store Number: " + num + " " + whataData.toString()) + "\n";
+            num++;
+        }
         return printRes;
     }
 
-    public ArrayList<resData> getResList() {
+    public ArrayList<resObj> getResList() {
         return resList;
     }
 
-    public void setResList(ArrayList<resData> resList) {
+    public void setResList(ArrayList<resObj> resList) {
         this.resList = resList;
-    }
-
-    public void setStoreID(int storeID) {
-        this.storeID = storeID;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public int getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
     }
 }

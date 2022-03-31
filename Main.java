@@ -7,5 +7,6 @@ public class Main {
 
         resData whatABurger = new resData();
         whatABurger.parseFile("test/WhataburgerData.csv");
+        System.out.println(whatABurger);
     }
 }
