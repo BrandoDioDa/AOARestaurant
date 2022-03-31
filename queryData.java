@@ -32,6 +32,7 @@ public class queryData {
                 //add new object to the arraylist
                 queueList.add(queueLocation);
             }
+            setQueueList(queueList);
             scan.close(); //close the scanner
         } catch (FileNotFoundException e){
             e.printStackTrace();
@@ -47,5 +48,13 @@ public class queryData {
             numLine++;
         }
         return printList;
+    }
+
+    public ArrayList<queryObj> getQueueList() {
+        return queueList;
+    }
+
+    public void setQueueList(ArrayList<queryObj> queueList) {
+        this.queueList = queueList;
     }
 }

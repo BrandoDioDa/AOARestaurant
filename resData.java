@@ -38,6 +38,7 @@ public class resData {
                 //add new object to the arraylist
                 resList.add(resLocation);
             }
+            setResList(resList);
             scan.close(); //close the scanner
         } catch (FileNotFoundException e){
             e.printStackTrace();
