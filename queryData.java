@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class queryData {
     private ArrayList<queryObj> queueList = new ArrayList<queryObj>();
+    private int count = 0;
+
     public queryData(){
 
     }
@@ -31,7 +33,9 @@ public class queryData {
                 queueLocation.setNumOfStores(Integer.parseInt(splitter[2]));
                 //add new object to the arraylist
                 queueList.add(queueLocation);
+                count++;
             }
+            setCount(count);
             setQueueList(queueList);
             scan.close(); //close the scanner
         } catch (FileNotFoundException e){
@@ -56,5 +60,13 @@ public class queryData {
 
     public void setQueueList(ArrayList<queryObj> queueList) {
         this.queueList = queueList;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

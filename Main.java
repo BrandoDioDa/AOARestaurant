@@ -8,10 +8,11 @@ public class Main {
         queryData query = new queryData();
 
         query.parseFile("test/Queries.csv");
-
-        System.out.println();
         data.parseFile(args[0]);
-        //whatABurger.parseFile("test/WhataburgerData.csv");
-        //System.out.println(data);
+
+        for(int i = 0; i < query.getCount(); i++){
+
+        }
+       // System.out.println(data);
     }
 }
