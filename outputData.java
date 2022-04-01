@@ -42,8 +42,7 @@ public class outputData {
             newOutput.add(x);
         }
                 
-    //randomizedSelect(newOutput,0, newOutput.size(), queueList.getNumOfStores());
-
+    randomizedSelect(newOutput,0, newOutput.size()-1, queueList.getNumOfStores());
     }
 
     public static outputObj randomizedSelect(ArrayList<outputObj> array, int l, int r, int i){
@@ -62,8 +61,29 @@ public class outputData {
     }
 
     public static int randomizedPartition(ArrayList<outputObj> array, int start, int end){
+        //
+        Random rng = new Random();
+        int pivotIndex = rng.nextInt(end - start + 1) + start;
+        outputObj temp = array.get(start);
+        array.set(start, array.get(pivotIndex));
+        array.set(pivotIndex, temp);
 
-        return 0;
+        double pivotDistance = array.get(start).getMilesAway();
+        int i = start;
+        for(int j = start + 1; j <= end; j++){
+            if(array.get(j).getMilesAway() <= pivotDistance){
+                i++;
+
+                //swap
+                temp = array.get(j);
+                array.set(j, array.get(i));
+                array.set(i, temp);
+            }
+        }
+        temp = array.get(start);
+        array.set(start, array.get(i));
+        array.set(i, temp);
+        return i;
     }
 
 
