@@ -41,8 +41,12 @@ public class outputData {
 
             newOutput.add(x);
         }
-                
-    randomizedSelect(newOutput,0, newOutput.size()-1, queueList.getNumOfStores());
+
+        randomizedSelect(newOutput,0, newOutput.size()-1, queueList.getNumOfStores());
+
+        for (int i = 0; i < 30; i++){
+            System.out.println(i+1 + " " + newOutput.get(i).toString());
+        }
     }
 
     public static outputObj randomizedSelect(ArrayList<outputObj> array, int l, int r, int i){
@@ -90,7 +94,8 @@ public class outputData {
     @Override
     public String toString() {
         return "outputData{" +
-                "newOutput=" + newOutput +
+                "newOutput=" +
+                newOutput +
                 '}';
     }
 
