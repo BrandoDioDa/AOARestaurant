@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class outputData {
     //variables
     private ArrayList<outputObj> newOutput = new ArrayList<>();
-
+    private ArrayList<outputObj> answer = new ArrayList<>();
     public outputData(){
 
     }
@@ -40,16 +41,45 @@ public class outputData {
 
             newOutput.add(x);
         }
-
-
+                
+    //randomizedSelect(newOutput,0, newOutput.size(), queueList.getNumOfStores());
 
     }
+
+    public static outputObj randomizedSelect(ArrayList<outputObj> array, int l, int r, int i){
+        if(l == r)
+            return array.get(l);
+
+        int mid = randomizedPartition(array, l, r);
+        int k = mid - (l - 1);
+
+        if(k == i)
+            return array.get(mid);
+        else if(i < k)
+            return randomizedSelect(array, l, mid-1, i);
+        else
+            return randomizedSelect(array, mid+1, r, i-k);
+    }
+
+    public static int randomizedPartition(ArrayList<outputObj> array, int start, int end){
+
+        return 0;
+    }
+
 
     @Override
     public String toString() {
         return "outputData{" +
                 "newOutput=" + newOutput +
                 '}';
+    }
+
+    public ArrayList<outputObj> getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(ArrayList<outputObj> answer) {
+        this.answer = answer;
     }
 
     public ArrayList<outputObj> getNewOutput() {
