@@ -1,3 +1,5 @@
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -5,6 +7,8 @@ public class outputData {
     //variables
     private ArrayList<outputObj> newOutput = new ArrayList<>();
     private ArrayList<outputObj> answer = new ArrayList<>();
+    private static final DecimalFormat df = new DecimalFormat("0.00");
+
     public outputData(){
 
     }
@@ -22,31 +26,28 @@ public class outputData {
         double c = 2*Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
         distance = radiusOfEarthInMiles * c;
-        distance = Math.toRadians(distance);
+        //distance = Math.toRadians(distance);
         //System.out.println(distance);
         return distance;
     }
 
     public void algorithm(ArrayList<resObj> resList, queryObj queueList) {
-        for (resObj resObj : resList) {
-            double distanceGlob = calcMiles(queueList.getLatitude(), queueList.getLongitude(), resObj);
+        df.setRoundingMode(RoundingMode.HALF_UP);
+        for (resObj newObj : resList) {
+            double distanceGlob = calcMiles(queueList.getLatitude(), queueList.getLongitude(), newObj);
             outputObj x = new outputObj();
 
-            x.setStoreID(resObj.getStoreID());
-            x.setAddress(resObj.getAddress());
-            x.setState(resObj.getState());
-            x.setCity(resObj.getCity());
-            x.setZipCode(resObj.getZipCode());
-            x.setMilesAway(distanceGlob);
+            x.setStoreID(newObj.getStoreID());
+            x.setAddress(newObj.getAddress());
+            x.setState(newObj.getState());
+            x.setCity(newObj.getCity());
+            x.setZipCode(newObj.getZipCode());
+            x.setMilesAway(Double.parseDouble(df.format(distanceGlob)));
 
             newOutput.add(x);
         }
-
-        randomizedSelect(newOutput,0, newOutput.size()-1, queueList.getNumOfStores());
-
-        for (int i = 0; i < 30; i++){
-            System.out.println(i+1 + " " + newOutput.get(i).toString());
-        }
+         randomizedSelect(newOutput,0, newOutput.size()-1, queueList.getNumOfStores());
+         setNewOutput(newOutput);
     }
 
     public static outputObj randomizedSelect(ArrayList<outputObj> array, int l, int r, int i){
@@ -65,7 +66,6 @@ public class outputData {
     }
 
     public static int randomizedPartition(ArrayList<outputObj> array, int start, int end){
-        //
         Random rng = new Random();
         int pivotIndex = rng.nextInt(end - start + 1) + start;
         outputObj temp = array.get(start);
@@ -90,13 +90,26 @@ public class outputData {
         return i;
     }
 
+    public void sortMiles(ArrayList<outputObj> m){
+        for (int i = 0; i < m.size() - 1; i++) {
+            for (int j = m.size() - 1; j > i; j--) {
+                if (m.get(j - 1).getMilesAway() > m.get(j).getMilesAway()) {
+                    //Swap
+                    outputObj tmp = m.get(j - 1);
+                    m.set(j -1, m.get(j));
+                    m.set(j, tmp);
+                }
+            }
+        }
+    }
 
     @Override
     public String toString() {
-        return "outputData{" +
-                "newOutput=" +
-                newOutput +
-                '}';
+        String printAnswer = "";
+        for(outputObj finalOutput: newOutput){
+            printAnswer = printAnswer.concat(finalOutput.toString());
+        }
+        return printAnswer;
     }
 
     public ArrayList<outputObj> getAnswer() {

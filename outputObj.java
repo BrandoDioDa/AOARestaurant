@@ -7,14 +7,7 @@ public class outputObj {
 
     @Override
     public String toString() {
-        return "outputObj{" +
-                "storeID=" + storeID +
-                ", address='" + address + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zipCode=" + zipCode +
-                ", milesAway=" + milesAway +
-                '}';
+        return "Store #" + getStoreID() + ". " + getAddress() + ", " + getCity() + ", " + getState() + ", " + getZipCode() + ". - " + getMilesAway() + " miles.\n";
     }
 
     public int getStoreID() {
