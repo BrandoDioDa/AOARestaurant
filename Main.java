@@ -17,11 +17,9 @@ public class Main {
             System.out.println("The " + query.getQueueList().get(i).getNumOfStores() + " closest Stores to (" + query.getQueueList().get(i).getLatitude() + ", " + query.getQueueList().get(i).getLongitude() + "):");
             for(int j = 0; j < query.getQueueList().get(i).getNumOfStores(); j++){
                 output.getAnswer().add(output.getNewOutput().get(j));
-                //System.out.println(output.getNewOutput().get(j));
             }
             output.sortMiles(output.getAnswer());
-            System.out.println(output.getAnswer().toString());
-            System.out.println("\n");
+            System.out.println(output.getAnswer().toString().replace("[", "").replace("]", "").replace(", S", "S")); // absolutely hideous way to format output, PLEASE ignore
             //Clears previous data
             output.getAnswer().clear();
             output.getNewOutput().clear();

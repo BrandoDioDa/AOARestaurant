@@ -13,14 +13,14 @@ public class outputData {
 
     }
 
-    public double calcMiles(double lat, double longi, resObj resList){
+    public double calcMiles(double lat, double lng, resObj resList){
         double radiusOfEarthInMiles = 3958.8;
-        double distance = 0;
+        double distance;
 
         double lat1 = Math.toRadians(resList.getLatitude());
         double lat2 = Math.toRadians(lat);
         double long1 = Math.toRadians(resList.getLongitude());
-        double long2 = Math.toRadians(longi);
+        double long2 = Math.toRadians(lng);
 
         double a = Math.pow(Math.sin((lat2 - lat1)/2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin((long2 - long1)/2), 2);
         double c = 2*Math.atan2(Math.sqrt(a), Math.sqrt(1-a));

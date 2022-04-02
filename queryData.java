@@ -23,7 +23,7 @@ public class queryData {
             while(scan.hasNextLine()){
                 queryObj queueLocation = new queryObj();
 
-                //Line that is read is split up by it's regex into array.
+                //Line that is read is split up by its regex into array.
                 fileLine = scan.nextLine();
                 String[] splitter = fileLine.split(",");
 
